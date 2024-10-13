@@ -218,6 +218,61 @@ X
 
 **[Powered by the Prefect-Ray Integration](https://github.com/PrefectHQ/prefect-ray)**
 
+
+## **Expanding the Agentic Workflow Automation Example**
+
+### **Scenario: Automated Customer Support Ticket Routing and Resolution**
+
+Imagine a customer support system where incoming tickets are automatically routed to the most appropriate agent based on their content and historical data. The system can also leverage natural language processing to extract key information from the ticket and provide initial responses or resolutions.
+
+### **Workflow and Agent Definitions**
+
+1. **Ingestion Agent:**
+   - Continuously monitors an incoming queue for new tickets.
+   - Extracts key information from the ticket using natural language processing.
+   - Determines the appropriate agent or team based on the extracted information and historical data.
+
+2. **Assignment Agent:**
+   - Assigns tickets to available agents based on their workload and expertise.
+   - Updates the ticket status and assigns a due date.
+
+3. **Resolution Agent:**
+   - Utilizes an LLM to generate potential responses or solutions based on the ticket content and historical data.
+   - Presents the options to the assigned agent for review and approval.
+   - Updates the ticket status and provides a resolution if appropriate.
+
+### **Workflow Orchestration with Prefect**
+
+```python
+from prefect import flow, task
+from prefect_ray import RayTaskRunner
+
+@task
+def ingest_ticket(ticket_id):
+    # ... (code to retrieve ticket from queue and extract information)
+
+@task
+def assign_agent(ticket_info):
+    # ... (code to determine appropriate agent and assign ticket)
+
+@task
+def resolve_ticket(ticket_info):
+    # ... (code to use LLM to generate responses and update ticket status)
+
+@flow(task_runner=RayTaskRunner)
+def customer_support_workflow(ticket_id):
+    ticket_info = ingest_ticket(ticket_id)
+    agent = assign_agent(ticket_info)
+    resolve_ticket(ticket_info, agent)
+```
+**Additional Considerations**
+
+* **Agent Persistence:** Agents can maintain state and context for handling ongoing conversations or complex tickets.
+* **Human-in-the-Loop:** Agents can still be involved in decision-making and oversight, especially for critical or complex cases.
+* **Integration with Existing Systems:** The workflow can be integrated with existing customer relationship management (CRM) systems and other tools.
+
+By expanding the example to this more complex scenario, we can see how agentic workflow automation can be applied to real-world problems, providing significant benefits in terms of efficiency, scalability, and intelligent decision-making.
+
 **Conclusion**
 
  As technology continues to advance, we can expect to see even more innovative and impactful uses of distributed computing power. Agentic workflow automation, powered by Ray and PREFECT, offers a powerful solution for businesses looking to streamline operations and increase efficiency. By leveraging the benefits of distributed computing and workflow orchestration, we can create scalable, flexible, and reliable systems that automate complex tasks. As technology continues to evolve, we can expect to see even more innovative applications of agentic workflow automation in the years to come.
