@@ -22,6 +22,8 @@ Agentic workflow automation is a paradigm where agents, autonomous entities with
 
 **The Role of RAY**
 
+![](what-is-ray-padded.svg)
+
 RAY, a distributed computing framework developed by Berkeley AI Research, provides a simple and efficient way to distribute tasks across a cluster of machines, making it ideal for handling large-scale workloads. Key features of RAY include:
 
 * **Task parallelism:** RAY can execute multiple tasks concurrently, maximizing resource utilization.
