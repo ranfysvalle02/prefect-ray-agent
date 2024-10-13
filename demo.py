@@ -1,11 +1,8 @@
 import json
 import httpx   # an HTTP client library and dependency of Prefect
 from prefect import flow, task
+from prefect_ray import RayTaskRunner
 from openai import AzureOpenAI
-import ray
-
-# Initialize Ray
-ray.init()
 
 AZURE_OPENAI_ENDPOINT = "https://.openai.azure.com"
 AZURE_OPENAI_API_KEY = "" 
@@ -74,7 +71,7 @@ def get_contributors(repo_info: dict):
     contributors = response.json()
     return contributors
 
-@flow(log_prints=True)
+@flow(log_prints=True, task_runner=RayTaskRunner)
 def log_repo_info(repo_owner: str = "ranfysvalle02", repo_name: str = "ai-self-attention"):
     """
     Given a GitHub repository, logs the number of stargazers
@@ -85,8 +82,11 @@ def log_repo_info(repo_owner: str = "ranfysvalle02", repo_name: str = "ai-self-a
 
     contributors = get_contributors(repo_info)
     print(f"Number of contributors 👷: {len(contributors)}")
-    return repo_info
-@ray.remote
+    return {
+        "stargazers_count": repo_info["stargazers_count"],
+        "contributors_count": len(contributors),
+    }
+
 class CustomAgent:
     def __init__(self):
         self.objective = """
@@ -142,12 +142,10 @@ class CustomAgent:
         if ai_message.get("PROCESS") and ai_message.get("PROCESS") == "log_repo_info":
             input_to_process = ai_message["INPUT_TO_PROCESS"]
             repo_info = log_repo_info(**input_to_process)
-            print("Stargazers: ", repo_info["stargazers_count"])
             return repo_info
         if ai_message.get("PROCESS") and ai_message.get("PROCESS") == "text_processing":
             input_to_process = ai_message["INPUT_TO_PROCESS"]
             txt_result = txt_processing(**input_to_process)
-            print("txt_result: ", txt_result)
             return txt_result
         else:
             print("No process found for input: ", input)
@@ -160,7 +158,9 @@ class CustomAgent:
             return ai_message.choices[0].message.content
 
 if __name__ == "__main__":
-    agent = CustomAgent.remote()
-    run1 = ray.get(agent.run.remote("Give me the stars and contributors for ranfysvalle02/ai-self-attention"))
-    run2 = ray.get(agent.run.remote("Make the letter `x` uppercase"))
+    agent = CustomAgent()
+    run1 = agent.run("Give me the stars and contributors for ranfysvalle02/ai-self-attention")
+    print(run1)
+    run2 = agent.run("Make the letter `x` uppercase")
+    print(run2)
     
