@@ -1,4 +1,5 @@
-## Agentic Workflow Automation: Unlocking Efficiency, Intelligence, and Resiliency
+# Agentic Automation: The Future of Workflows
+## Unlocking Efficiency, Intelligence, and Resiliency
 
 **Introduction**
 
