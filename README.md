@@ -15,33 +15,6 @@ This powerful combination offers several key advantages:
 * The code showcases how Ray is used to run the CustomAgent in a distributed manner.
 * Prefect handles task scheduling, execution, and logging, ensuring workflow reliability.
 
-## OUTPUT
-
-```
-input:  Give me the stars and contributors for ranfysvalle02/ai-self-attention
-06:16:58.732 | INFO    | prefect - Starting temporary server on http://127.0.0.1:8175
-See https://docs.prefect.io/3.0/manage/self-host#self-host-a-prefect-server for more information on running a dedicated Prefect server.
-06:17:01.407 | INFO    | prefect.engine - Created flow run 'camouflaged-labrador' for flow 'log-repo-info'
-06:17:01.528 | INFO    | prefect.task_runner.ray - Creating a local Ray instance
-2024-10-13 06:17:02,303	INFO worker.py:1777 -- Started a local Ray instance. View the dashboard at 127.0.0.1:8265 
-06:17:02.826 | INFO    | prefect.task_runner.ray - Using Ray cluster with 1 nodes.
-06:17:02.827 | INFO    | prefect.task_runner.ray - The Ray UI is available at 127.0.0.1:8265
-06:17:03.096 | INFO    | Task run 'get_repo_info-762' - Finished in state Completed()
-06:17:03.101 | INFO    | Flow run 'camouflaged-labrador' - Stars 🌠 : 3
-06:17:03.277 | INFO    | Task run 'get_contributors-9d8' - Finished in state Completed()
-06:17:03.278 | INFO    | Flow run 'camouflaged-labrador' - Number of contributors 👷: 1
-06:17:04.824 | INFO    | Flow run 'camouflaged-labrador' - Finished in state Completed()
-{'stargazers_count': 3, 'contributors_count': 1}
-input:  Make the letter `x` uppercase
-06:17:07.057 | INFO    | Task run 'txt_processing' - Finished in state Completed()
-X
-06:17:07.091 | INFO    | prefect - Stopping temporary server on http://127.0.0.1:8175
-```
-
-**[Based on The Prefect Agent](https://github.com/ranfysvalle02/the-prefect-agent/)**
-
-**[Powered by the Prefect-Ray Integration](https://github.com/PrefectHQ/prefect-ray)**
-
 **The Power of Structured Output**
 
 Structured output is a technique that involves producing outputs in a predefined format, such as JSON or XML. This can be particularly useful in agentic workflow automation, as it allows agents to easily communicate and exchange data.
@@ -188,6 +161,33 @@ When implementing agentic workflow automation, security is a paramount concern. 
 * **Implement Controls:** Develop and implement appropriate security controls to mitigate the risks.
 
 By following these security best practices, you can significantly reduce the risk of security breaches and protect your agentic workflow automation systems.
+
+## OUTPUT
+
+```
+input:  Give me the stars and contributors for ranfysvalle02/ai-self-attention
+06:16:58.732 | INFO    | prefect - Starting temporary server on http://127.0.0.1:8175
+See https://docs.prefect.io/3.0/manage/self-host#self-host-a-prefect-server for more information on running a dedicated Prefect server.
+06:17:01.407 | INFO    | prefect.engine - Created flow run 'camouflaged-labrador' for flow 'log-repo-info'
+06:17:01.528 | INFO    | prefect.task_runner.ray - Creating a local Ray instance
+2024-10-13 06:17:02,303	INFO worker.py:1777 -- Started a local Ray instance. View the dashboard at 127.0.0.1:8265 
+06:17:02.826 | INFO    | prefect.task_runner.ray - Using Ray cluster with 1 nodes.
+06:17:02.827 | INFO    | prefect.task_runner.ray - The Ray UI is available at 127.0.0.1:8265
+06:17:03.096 | INFO    | Task run 'get_repo_info-762' - Finished in state Completed()
+06:17:03.101 | INFO    | Flow run 'camouflaged-labrador' - Stars 🌠 : 3
+06:17:03.277 | INFO    | Task run 'get_contributors-9d8' - Finished in state Completed()
+06:17:03.278 | INFO    | Flow run 'camouflaged-labrador' - Number of contributors 👷: 1
+06:17:04.824 | INFO    | Flow run 'camouflaged-labrador' - Finished in state Completed()
+{'stargazers_count': 3, 'contributors_count': 1}
+input:  Make the letter `x` uppercase
+06:17:07.057 | INFO    | Task run 'txt_processing' - Finished in state Completed()
+X
+06:17:07.091 | INFO    | prefect - Stopping temporary server on http://127.0.0.1:8175
+```
+
+**[Based on The Prefect Agent](https://github.com/ranfysvalle02/the-prefect-agent/)**
+
+**[Powered by the Prefect-Ray Integration](https://github.com/PrefectHQ/prefect-ray)**
 
 **Conclusion**
 
