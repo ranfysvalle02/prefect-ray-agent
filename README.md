@@ -4,13 +4,6 @@
 
 In today's fast-paced world, businesses are constantly seeking ways to streamline operations and increase efficiency. Agentic workflow automation, a paradigm that empowers agents to execute tasks autonomously, offers a promising solution. By combining the distributed computing framework Ray with the workflow orchestration platform PREFECT, we can create powerful and scalable systems that automate complex workflows.
 
-The code demonstrates how agentic workflow automation with Ray and Prefect can be implemented. Here's a breakdown of the key components:
-
-* **CustomAgent:** This class defines an agent that utilizes an LLM (Azure OpenAI in this case) to determine the appropriate workflow to execute based on the user input.
-* **txt_processing:** This is another Prefect task that uses a Tool class to process text input (uppercase conversion in this example).
-* **get_repo_info, get_contributors:** These are Prefect tasks that retrieve information from a GitHub repository.
-* **log_repo_info:** This is a Prefect flow that utilizes the previously mentioned tasks to retrieve and display information about a GitHub repository.
-
 This powerful combination offers several key advantages:
 
 * **Structured Data Integration:** Structured outputs ensure that data is formatted in a way that is easily understandable and usable by downstream systems.
@@ -125,6 +118,12 @@ Agentic workflow automation, powered by Ray and PREFECT, offers a powerful solut
 ```
 
 ## FULL CODE
+The code demonstrates how agentic workflow automation with Ray and Prefect can be implemented. Here's a breakdown of the key components:
+
+* **CustomAgent:** This class defines an agent that utilizes an LLM (Azure OpenAI in this case) to determine the appropriate workflow to execute based on the user input.
+* **txt_processing:** This is another Prefect task that uses a Tool class to process text input (uppercase conversion in this example).
+* **get_repo_info, get_contributors:** These are Prefect tasks that retrieve information from a GitHub repository.
+* **log_repo_info:** This is a Prefect flow that utilizes the previously mentioned tasks to retrieve and display information about a GitHub repository.
 
 ```python
 import json
