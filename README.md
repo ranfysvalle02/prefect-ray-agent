@@ -44,20 +44,8 @@ Ray is a distributed computing platform designed to simplify the development and
 * **Task Scheduling:** Automatically schedule tasks for efficient execution across available resources.
 * **Fault Tolerance:** Handle failures gracefully and recover from errors to ensure application reliability.
 
-### Advanced Features
-
-* **Distributed Datasets:** Process and manipulate large datasets in parallel using distributed data structures.
-* **Machine Learning Integration:** Optimize machine learning workflows with Ray's distributed training and hyperparameter tuning capabilities.
-* **Ray Serve:** Deploy and scale machine learning models as web services.
-* **Customizable Resources:** Specify custom resource requirements for tasks and actors, such as GPUs or TPUs.
-* **Integration with Popular Frameworks:** Integrate Ray with frameworks like TensorFlow, PyTorch, and Horovod for seamless distributed training.
-
-By leveraging these key features, Ray empowers developers to build and scale distributed applications efficiently, handle large datasets, and accelerate machine learning workflows.
-
 **The Power of PREFECT**
 ![](prefect.png)
-
-Prefect is a powerful workflow automation platform designed to streamline data engineering and scientific workflows. It offers a comprehensive set of features to enhance efficiency and reliability:
 
 ### Core Features
 
@@ -66,16 +54,6 @@ Prefect is a powerful workflow automation platform designed to streamline data e
 * **Scheduling:** Schedule workflows to run on a regular basis or based on specific triggers.
 * **Retries and Timeouts:** Implement retry logic and timeouts to handle failures and ensure workflow reliability.
 * **Parallelism:** Execute tasks concurrently to improve performance and reduce processing time.
-
-### Advanced Features
-
-* **Distributed Execution:** Distribute workflows across multiple machines for scalability and fault tolerance.
-* **Cloud Integration:** Seamlessly integrate with cloud platforms like AWS, GCP, and Azure for cloud-native workflows.
-* **Data Versioning:** Track changes to data inputs and outputs to ensure reproducibility and traceability.
-* **Visualization and Monitoring:** Gain insights into workflow performance and identify bottlenecks with intuitive visualizations.
-* **Extensibility:** Customize Prefect with custom operators, integrations, and plugins to meet specific requirements.
-
-By leveraging these key features, Prefect empowers data engineers and scientists to build, manage, and optimize their workflows efficiently and effectively.
 
 **Combining RAY and PREFECT for Maximum Impact**
 
