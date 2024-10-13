@@ -1,4 +1,4 @@
-## Agentic Workflow Automation with RAY and PREFECT
+## Agentic Workflow Automation: Unlocking Efficiency, Intelligence, and Resiliency
 
 **Introduction**
 
@@ -10,6 +10,12 @@ The code demonstrates how agentic workflow automation with Ray and Prefect can b
 * **txt_processing:** This is another Prefect task that uses a Tool class to process text input (uppercase conversion in this example).
 * **get_repo_info, get_contributors:** These are Prefect tasks that retrieve information from a GitHub repository.
 * **log_repo_info:** This is a Prefect flow that utilizes the previously mentioned tasks to retrieve and display information about a GitHub repository.
+
+This powerful combination offers several key advantages:
+
+* **Structured Data Integration:** Structured outputs ensure that data is formatted in a way that is easily understandable and usable by downstream systems.
+* **Scalability and Efficiency:** Ray's distributed computing framework enables the efficient execution of tasks across multiple machines, handling large datasets and complex workflows with ease.
+* **Workflow Management and Orchestration:** Prefect provides a robust platform for defining, scheduling, and monitoring workflows, ensuring reliability and maintainability.
 
 **Key Points:**
 
