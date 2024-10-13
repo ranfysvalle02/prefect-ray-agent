@@ -31,7 +31,7 @@ RAY, a distributed computing framework developed by Berkeley AI Research, provid
 * **Fault tolerance:** RAY can automatically recover from failures, ensuring the reliability of workflows.
 
 **The Power of PREFECT**
-
+![](prefect.png)
 PREFECT, a workflow orchestration platform, complements RAY by providing a high-level interface for defining and managing complex workflows. It offers features such as:
 
 * **Workflow visualization:** PREFECT allows users to visualize workflows graphically, making it easier to understand and debug.
