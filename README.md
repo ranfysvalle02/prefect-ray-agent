@@ -19,6 +19,26 @@ This powerful combination offers several key advantages:
 
 Distributed computing systems, like those powered by Ray, are poised to revolutionize a wide range of industries and solve some of the world's most pressing challenges. By harnessing the power of distributed computing, we can unlock new possibilities in scientific research, artificial intelligence, financial services, the Internet of Things, and beyond.
 
+### **What Are Agents in Workflow Automation?**
+
+In the context of workflow automation, agents are autonomous programs or entities designed to perform specific tasks. They act based on predefined rules, data inputs, or external stimuli, making decisions and carrying out actions without continuous human intervention. Each agent is responsible for completing a distinct part of the workflow, and these agents can either work independently or collaboratively to accomplish broader goals.
+
+Agents in workflow automation typically:
+- **Monitor** for events or triggers in the system.
+- **Process** the data they receive and determine the necessary action.
+- **Execute** actions, whether that be updating a database, sending notifications, or initiating further tasks in the pipeline.
+
+The beauty of agentic automation lies in the system's ability to adapt and evolve, as agents can be added, reconfigured, or enhanced based on changing needs.
+
+### **Agentic Workflow Automation in Practice**
+
+Real-world applications of agentic workflow automation span across industries:
+- **Customer Support Systems**: Automating ticket categorization, escalation, and resolution based on customer inputs and historical data.
+- **DevOps Pipelines**: Agents handling code integration, testing, and deployment without manual oversight.
+- **Financial Transactions**: Automated agents monitoring transactions, flagging anomalies, and processing payments in real-time.
+
+These systems reduce human workload, improve speed, and increase overall accuracy, making agentic workflow automation a powerful tool in modern organizations.
+
 **The Power of Structured Output**
 
 Structured output is a technique that involves producing outputs in a predefined format, such as JSON or XML. This can be particularly useful in agentic workflow automation, as it allows agents to easily communicate and exchange data.
