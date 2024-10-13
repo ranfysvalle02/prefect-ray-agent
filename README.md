@@ -218,6 +218,35 @@ X
 
 **[Powered by the Prefect-Ray Integration](https://github.com/PrefectHQ/prefect-ray)**
 
+**Understanding the Code:**
+
+The provided code demonstrates a basic agentic workflow automation example using Ray and Prefect. It consists of several key components:
+
+1. **CustomAgent Class:**
+   - This class defines an agent that utilizes an LLM (Azure OpenAI in this case) to determine the appropriate workflow to execute based on the user input.
+   - The agent uses the LLM to analyze the input and identify the relevant process and input parameters.
+
+2. **Prefect Tasks:**
+   - `txt_processing`: This task uses a Tool class to process text input (uppercase conversion in this example).
+   - `get_repo_info` and `get_contributors`: These tasks retrieve information from a GitHub repository using HTTP requests.
+
+3. **Prefect Flow:**
+   - `log_repo_info`: This flow orchestrates the execution of the tasks, retrieving and displaying information about a GitHub repository.
+
+**How it Works:**
+
+1. **User Input:** The user provides an input to the `CustomAgent`.
+2. **LLM Analysis:** The agent uses the LLM to analyze the input and determine the appropriate workflow to execute.
+3. **Workflow Execution:** The agent triggers the corresponding Prefect flow based on the LLM's decision.
+4. **Task Execution:** The flow executes the necessary tasks, such as retrieving repository information or processing text.
+5. **Output:** The flow returns the results of the executed tasks.
+
+**Key Points:**
+
+* The `CustomAgent` leverages the LLM to provide an intelligent decision-making capability.
+* Prefect handles the workflow orchestration and task execution.
+* Ray is used for distributed computing, enabling efficient execution of tasks.
+* The code demonstrates how to define tasks, workflows, and integrate LLMs into agentic workflow automation.
 
 ## **Expanding the Agentic Workflow Automation Example**
 
