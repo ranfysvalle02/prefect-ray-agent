@@ -1,6 +1,10 @@
 # Agentic Automation: The Future of Workflows
 ### GPT-4o+Ray+Prefect: Unlocking Efficiency, Intelligence, and Resiliency
 
+![](https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7e2b60e7-5368-4646-a9b6-40cc8d5be353_1456x816.png)
+
+__Image credit to [What are Agentic Workflows? ](https://giancarlomori.substack.com/p/what-are-agentic-workflows)__
+
 **Introduction**
 
 In today's fast-paced world, businesses are constantly seeking ways to streamline operations and increase efficiency. Agentic workflow automation, a paradigm that empowers agents to execute tasks autonomously, offers a promising solution. By combining the distributed computing framework Ray with the workflow orchestration platform PREFECT, we can create powerful and scalable systems that automate complex workflows.
