@@ -15,6 +15,29 @@ This powerful combination offers several key advantages:
 * The code showcases how Ray is used to run the CustomAgent in a distributed manner.
 * Prefect handles task scheduling, execution, and logging, ensuring workflow reliability.
 
+## OUTPUT
+
+```
+input:  Give me the stars and contributors for ranfysvalle02/ai-self-attention
+06:16:58.732 | INFO    | prefect - Starting temporary server on http://127.0.0.1:8175
+See https://docs.prefect.io/3.0/manage/self-host#self-host-a-prefect-server for more information on running a dedicated Prefect server.
+06:17:01.407 | INFO    | prefect.engine - Created flow run 'camouflaged-labrador' for flow 'log-repo-info'
+06:17:01.528 | INFO    | prefect.task_runner.ray - Creating a local Ray instance
+2024-10-13 06:17:02,303	INFO worker.py:1777 -- Started a local Ray instance. View the dashboard at 127.0.0.1:8265 
+06:17:02.826 | INFO    | prefect.task_runner.ray - Using Ray cluster with 1 nodes.
+06:17:02.827 | INFO    | prefect.task_runner.ray - The Ray UI is available at 127.0.0.1:8265
+06:17:03.096 | INFO    | Task run 'get_repo_info-762' - Finished in state Completed()
+06:17:03.101 | INFO    | Flow run 'camouflaged-labrador' - Stars 🌠 : 3
+06:17:03.277 | INFO    | Task run 'get_contributors-9d8' - Finished in state Completed()
+06:17:03.278 | INFO    | Flow run 'camouflaged-labrador' - Number of contributors 👷: 1
+06:17:04.824 | INFO    | Flow run 'camouflaged-labrador' - Finished in state Completed()
+{'stargazers_count': 3, 'contributors_count': 1}
+input:  Make the letter `x` uppercase
+06:17:07.057 | INFO    | Task run 'txt_processing' - Finished in state Completed()
+X
+06:17:07.091 | INFO    | prefect - Stopping temporary server on http://127.0.0.1:8175
+```
+
 **The Power of Structured Output**
 
 Structured output is a technique that involves producing outputs in a predefined format, such as JSON or XML. This can be particularly useful in agentic workflow automation, as it allows agents to easily communicate and exchange data.
@@ -168,27 +191,6 @@ By following these security best practices, you can significantly reduce the ris
 
 Agentic workflow automation, powered by Ray and PREFECT, offers a powerful solution for businesses looking to streamline operations and increase efficiency. By leveraging the benefits of distributed computing and workflow orchestration, we can create scalable, flexible, and reliable systems that automate complex tasks. As technology continues to evolve, we can expect to see even more innovative applications of agentic workflow automation in the years to come.
 
-## Output
-
-```
-(CustomAgent pid=81221) input:  Give me the stars and contributors for ranfysvalle02/ai-self-attention
-(CustomAgent pid=81221) 03:31:52.247 | INFO    | prefect.engine - Created flow run 'brass-eel' for flow 'log-repo-info'
-(CustomAgent pid=81221) 03:31:52.281 | INFO    | Flow run 'brass-eel' - Created task run 'get_repo_info-0' for task 'get_repo_info'
-(CustomAgent pid=81221) 03:31:52.282 | INFO    | Flow run 'brass-eel' - Executing 'get_repo_info-0' immediately...
-(CustomAgent pid=81221) 03:31:52.764 | INFO    | Task run 'get_repo_info-0' - Finished in state Completed()
-(CustomAgent pid=81221) 03:31:52.765 | INFO    | Flow run 'brass-eel' - Stars 🌠 : 3
-(CustomAgent pid=81221) 03:31:52.784 | INFO    | Flow run 'brass-eel' - Created task run 'get_contributors-0' for task 'get_contributors'
-(CustomAgent pid=81221) 03:31:52.784 | INFO    | Flow run 'brass-eel' - Executing 'get_contributors-0' immediately...
-(CustomAgent pid=81221) 03:31:52.980 | INFO    | Task run 'get_contributors-0' - Finished in state Completed()
-(CustomAgent pid=81221) 03:31:52.981 | INFO    | Flow run 'brass-eel' - Number of contributors 👷: 1
-(CustomAgent pid=81221) 03:31:52.997 | INFO    | Flow run 'brass-eel' - Finished in state Completed()
-(CustomAgent pid=81221) Stargazers:  3
-(CustomAgent pid=81221) input:  Make the letter `x` uppercase
-(CustomAgent pid=81221) 03:31:53.701 | INFO    | prefect.engine - Created task run 'txt_processing-51b3c33b' for task 'txt_processing'
-(CustomAgent pid=81221) txt_result:  X
-(CustomAgent pid=81221) 03:31:54.831 | INFO    | Task run 'txt_processing-51b3c33b' - Finished in state Completed()
-```
-
 ## FULL CODE
 The code demonstrates how agentic workflow automation with Ray and Prefect can be implemented. Here's a breakdown of the key components:
 
@@ -201,11 +203,8 @@ The code demonstrates how agentic workflow automation with Ray and Prefect can b
 import json
 import httpx   # an HTTP client library and dependency of Prefect
 from prefect import flow, task
+from prefect_ray import RayTaskRunner
 from openai import AzureOpenAI
-import ray
-
-# Initialize Ray
-ray.init()
 
 AZURE_OPENAI_ENDPOINT = "https://.openai.azure.com"
 AZURE_OPENAI_API_KEY = "" 
@@ -274,7 +273,7 @@ def get_contributors(repo_info: dict):
     contributors = response.json()
     return contributors
 
-@flow(log_prints=True)
+@flow(log_prints=True, task_runner=RayTaskRunner)
 def log_repo_info(repo_owner: str = "ranfysvalle02", repo_name: str = "ai-self-attention"):
     """
     Given a GitHub repository, logs the number of stargazers
@@ -285,8 +284,11 @@ def log_repo_info(repo_owner: str = "ranfysvalle02", repo_name: str = "ai-self-a
 
     contributors = get_contributors(repo_info)
     print(f"Number of contributors 👷: {len(contributors)}")
-    return repo_info
-@ray.remote
+    return {
+        "stargazers_count": repo_info["stargazers_count"],
+        "contributors_count": len(contributors),
+    }
+
 class CustomAgent:
     def __init__(self):
         self.objective = """
@@ -342,12 +344,10 @@ class CustomAgent:
         if ai_message.get("PROCESS") and ai_message.get("PROCESS") == "log_repo_info":
             input_to_process = ai_message["INPUT_TO_PROCESS"]
             repo_info = log_repo_info(**input_to_process)
-            print("Stargazers: ", repo_info["stargazers_count"])
             return repo_info
         if ai_message.get("PROCESS") and ai_message.get("PROCESS") == "text_processing":
             input_to_process = ai_message["INPUT_TO_PROCESS"]
             txt_result = txt_processing(**input_to_process)
-            print("txt_result: ", txt_result)
             return txt_result
         else:
             print("No process found for input: ", input)
@@ -360,8 +360,10 @@ class CustomAgent:
             return ai_message.choices[0].message.content
 
 if __name__ == "__main__":
-    agent = CustomAgent.remote()
-    run1 = ray.get(agent.run.remote("Give me the stars and contributors for ranfysvalle02/ai-self-attention"))
-    run2 = ray.get(agent.run.remote("Make the letter `x` uppercase"))
-    
+    agent = CustomAgent()
+    run1 = agent.run("Give me the stars and contributors for ranfysvalle02/ai-self-attention")
+    print(run1)
+    run2 = agent.run("Make the letter `x` uppercase")
+    print(run2)
+        
 ```
