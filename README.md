@@ -52,12 +52,6 @@ Ray is a distributed computing platform designed to simplify the development and
 * **Customizable Resources:** Specify custom resource requirements for tasks and actors, such as GPUs or TPUs.
 * **Integration with Popular Frameworks:** Integrate Ray with frameworks like TensorFlow, PyTorch, and Horovod for seamless distributed training.
 
-### Additional Benefits
-
-* **Open-Source:** Ray is an open-source project, providing flexibility and community support.
-* **Python-Based:** Built on Python, a popular language for data science and engineering.
-* **Community-Driven:** Benefit from a growing community of users and contributors.
-
 By leveraging these key features, Ray empowers developers to build and scale distributed applications efficiently, handle large datasets, and accelerate machine learning workflows.
 
 **The Power of PREFECT**
