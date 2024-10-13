@@ -30,7 +30,7 @@ By combining LLMs, agentic workflow automation, and structured output, we can cr
 
 **The Role of RAY**
 
-![](what-is-ray-padded.svg)
+![](rayray.png)
 
 ## Key Features of Ray
 
