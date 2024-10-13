@@ -38,11 +38,24 @@ X
 06:17:07.091 | INFO    | prefect - Stopping temporary server on http://127.0.0.1:8175
 ```
 
+**[Based on The Prefect Agent](https://github.com/ranfysvalle02/the-prefect-agent/)**
+
+**[Powered by the Prefect-Ray Integration](https://github.com/PrefectHQ/prefect-ray)**
+
 **The Power of Structured Output**
 
 Structured output is a technique that involves producing outputs in a predefined format, such as JSON or XML. This can be particularly useful in agentic workflow automation, as it allows agents to easily communicate and exchange data.
 
 By combining LLMs, agentic workflow automation, and structured output, we can create powerful and flexible systems that can automate a wide range of tasks. 
+
+In the provided code, the `CustomAgent` class utilizes an LLM to determine the appropriate workflow to execute based on the user input. The LLM is used to analyze the input and identify the relevant process and input parameters.
+
+In the context of agentic workflow automation, Large Language Models (LLMs) play a pivotal role in:
+
+* **Understanding Natural Language:** LLMs can process and interpret human language, enabling agents to understand and respond to user requests and instructions.
+* **Task Selection and Routing:** Based on the user's input, LLMs can determine the most appropriate workflow or task to execute.
+* **Dynamic Workflow Generation:** LLMs can generate new workflows on-the-fly, adapting to changing circumstances or requirements.
+* **Knowledge Base Access:** LLMs can access and process information from external knowledge bases, providing agents with relevant data to complete their tasks.
 
 **The Role of Ray**
 
@@ -103,17 +116,6 @@ By combining Ray and PREFECT, we can create powerful and scalable agentic workfl
 * **Simplified development:** PREFECT's high-level interface makes it easy to define and manage complex workflows.
 * **Improved performance:** Ray's distributed computing capabilities ensure that workflows are executed efficiently.
 * **Enhanced reliability:** PREFECT's fault tolerance mechanisms and Ray's automatic recovery capabilities help to ensure that workflows are resilient to failures.
-
-**Understanding the Role of LLMs**
-
-In the provided code, the `CustomAgent` class utilizes an LLM to determine the appropriate workflow to execute based on the user input. The LLM is used to analyze the input and identify the relevant process and input parameters.
-
-In the context of agentic workflow automation, Large Language Models (LLMs) play a pivotal role in:
-
-* **Understanding Natural Language:** LLMs can process and interpret human language, enabling agents to understand and respond to user requests and instructions.
-* **Task Selection and Routing:** Based on the user's input, LLMs can determine the most appropriate workflow or task to execute.
-* **Dynamic Workflow Generation:** LLMs can generate new workflows on-the-fly, adapting to changing circumstances or requirements.
-* **Knowledge Base Access:** LLMs can access and process information from external knowledge bases, providing agents with relevant data to complete their tasks.
 
 ### Limitations and Challenges of Agentic Workflow Automation
 
